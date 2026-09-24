@@ -4,6 +4,7 @@ import { TodoList } from './components/TodoList/TodoList';
 import { TodoForm } from './components/TodoForm/TodoForm';
 import { User } from './types/User';
 import { getNextTodoId, initialTodos } from './utils/todos';
+import usersFromServer from './api/users';
 
 export const App = () => {
   const [todos, setTodos] = useState(initialTodos);
@@ -24,7 +25,7 @@ export const App = () => {
   return (
     <div className="App">
       <h1 className="App__title">Add todo form</h1>
-      <TodoForm onAdd={handleAdd} />
+      <TodoForm onAdd={handleAdd} users={usersFromServer} />
       <TodoList todos={todos} />
     </div>
   );

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import usersFromServer from '../../api/users';
 import { User } from '../../types/User';
 import { getUserById } from '../../utils/users';
 
@@ -27,9 +26,10 @@ function validate({ title, user }: FormValues): FormErrors {
 
 type Props = {
   onAdd: (title: string, user: User) => void;
+  users: User[];
 };
 
-export const TodoForm = ({ onAdd }: Props) => {
+export const TodoForm = ({ onAdd, users }: Props) => {
   const [values, setValues] = useState<FormValues>(defaultValues);
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -94,7 +94,7 @@ export const TodoForm = ({ onAdd }: Props) => {
           <option value="" disabled>
             Choose a user
           </option>
-          {usersFromServer.map(item => (
+          {users.map(item => (
             <option key={item.id} value={item.id}>
               {item.name}
             </option>
